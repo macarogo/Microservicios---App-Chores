@@ -1,0 +1,5 @@
+package com.technicalTest.springboot.app.users.repository;
+
+public interface UsersRepository {
+
+}

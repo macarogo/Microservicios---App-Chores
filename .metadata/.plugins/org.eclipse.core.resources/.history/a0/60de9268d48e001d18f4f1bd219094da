@@ -1,0 +1,5 @@
+package com.technicalTest.springboot.app.users.service;
+
+public class UserService implements UserService {
+
+}

@@ -1,0 +1,15 @@
+package com.technicalTest.springboot.app.users.dto;
+
+import java.time.LocalDate;
+
+public class UsersDto {
+	
+	private String username;
+	private String firstName;
+	private String lastName;
+	private String email;
+	private LocalDate timestamps;
+	
+	public UsersDto() {}
+
+}

@@ -1,0 +1,61 @@
+package com.technicalTest.springboot.app.users.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.technicalTest.springboot.app.users.dto.UserDto;
+import com.technicalTest.springboot.app.users.entity.Users;
+import com.technicalTest.springboot.app.users.mapper.UserMapper;
+import com.technicalTest.springboot.app.users.repository.UserRepository;
+
+@Service
+public class UserServiceImpl implements UserService{
+	
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
+	private UserMapper userMapper;
+
+	@Override
+	//@Transactional(readOnly= true)
+	public List<UserDto> getAllUser() {
+		List<Users> users= userRepository.findAll();
+		List<UserDto> userDto= userMapper.userEntityList2DTO(users);
+		return userDto;
+	}
+
+	@Override
+	//@Transactional(readOnly= true)
+	public UserDto getByIdUser(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	//@Transactional(readOnly= true)
+	public UserDto createUser(UserDto userDto) {
+		Users users= userMapper.userDTO2Entity(userDto);
+		
+		Users userCreated= userRepository.save(users);
+		return userMapper.userEntity2DTO(userCreated);
+	}
+
+	@Override
+	//@Transactional(readOnly= true)
+	public UserDto updateUser(UserDto userDto, Long id) {
+		
+		return null;
+	}
+
+	@Override
+	//@Transactional(readOnly= true)
+	public String deleteUser(Long id) {
+		return null;
+	}
+
+	
+}

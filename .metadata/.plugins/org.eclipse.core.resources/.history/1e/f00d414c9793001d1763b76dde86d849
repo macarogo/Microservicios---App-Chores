@@ -1,0 +1,5 @@
+package com.technicalTest.springboot.app.users.configuration;
+
+public class RestTempleConfig {
+
+}

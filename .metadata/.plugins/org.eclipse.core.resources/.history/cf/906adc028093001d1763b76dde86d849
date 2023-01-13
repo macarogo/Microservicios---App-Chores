@@ -1,0 +1,14 @@
+package com.technicalTest.springboot.app.chores.dto;
+
+import com.technicalTest.springboot.app.users.dto.ErrorDto;
+
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
+public class ErrorChoresDto {
+	
+	private String code;
+	private String message;
+}

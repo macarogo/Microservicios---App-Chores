@@ -1,0 +1,30 @@
+package com.technicalTest.springboot.app.users.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.technicalTest.springboot.app.users.dto.UserDto;
+import com.technicalTest.springboot.app.users.entity.Users;
+import com.technicalTest.springboot.app.users.mapper.UserMapper;
+import com.technicalTest.springboot.app.users.repository.UserRepository;
+
+@Service
+public class UserServiceImpl implements UserService{
+	
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
+	private UserMapper userMapper;
+
+	@Override
+	public UserDto createUser(UserDto userDto) {
+		Users users= userMapper.userDTO2Entity(userDto);	
+		Users userCreated= userRepository.save(users);
+		return userMapper.userEntity2DTO(userCreated);
+	}
+
+	
+}

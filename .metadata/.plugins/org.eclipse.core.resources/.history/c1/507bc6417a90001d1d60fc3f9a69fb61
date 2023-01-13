@@ -1,0 +1,11 @@
+package com.technicalTest.springboot.app.users.service;
+
+
+import com.technicalTest.springboot.app.users.dto.UserDto;
+
+public interface UserService {
+	
+	public UserDto createUser(UserDto userDto);
+	public void deleteUser(Long id);
+
+}

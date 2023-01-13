@@ -1,0 +1,5 @@
+package com.technicalTest.springboot.app.chores.service;
+
+public interface ChoresService {
+
+}

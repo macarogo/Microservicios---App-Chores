@@ -1,0 +1,6 @@
+package com.technicalTest.springboot.app.users.controller;
+
+
+public class ControllerAdvice {
+
+}

@@ -1,0 +1,15 @@
+package com.technicalTest.springboot.app.users.repository;
+
+import java.util.Date;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.technicalTest.springboot.app.users.entity.Users;
+
+@Repository
+public interface UserRepository extends JpaRepository<Users, Long>{
+	//Búsqueda de Usuario por fecha
+	Users findByCreateAt (Date createAt);
+
+}

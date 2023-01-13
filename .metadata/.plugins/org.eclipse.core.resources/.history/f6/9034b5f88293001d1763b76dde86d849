@@ -1,0 +1,60 @@
+package com.technicalTest.springboot.app.chores.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.technicalTest.springboot.app.chores.dto.ChoresDto;
+import com.technicalTest.springboot.app.chores.entity.Chores;
+import com.technicalTest.springboot.app.chores.mapper.ChoresMapper;
+import com.technicalTest.springboot.app.chores.repository.ChoresRepository;
+
+@Service
+public class ChoresServiceImpl implements ChoresService{
+	
+	@Autowired
+	public ChoresRepository choresRepository;
+	
+	@Autowired
+	public ChoresMapper choresMapper;
+
+	@Override
+	public ChoresDto saveChores(ChoresDto choresDto) {
+		Chores chores= choresMapper.choresDTO2Entity(choresDto);
+		Chores newChores= choresRepository.save(chores);
+		return choresMapper.choreEntity2DTO(newChores);
+	}
+
+	@Override
+	public List<ChoresDto> getAllChores() {
+		List<Chores> choresList= choresRepository.findAll();
+		return choresMapper.choresEntityList2DTO(choresList);
+	}
+
+	@Override
+	public ChoresDto getById(Long id) {
+		Chores choresId= choresRepository.findById(id).orElse(null);
+		return choresMapper.choreEntity2DTO(choresId);
+	}
+
+	@Override
+	public ChoresDto updateChores(ChoresDto choresDto, Long id) {
+		Chores chores= choresRepository.findById(id).orElse(null);
+		chores.setTitle(choresDto.getTitle());
+		chores.setContent(choresDto.getContent());
+		Chores choresSave= choresRepository.save(chores);
+		return choresMapper.choreEntity2DTO(choresSave);
+	}
+
+	@Override
+	public void delete(Long id) {
+		Optional<Chores> chores= choresRepository.findById(id);
+		if(chores.isPresent()) {
+			choresRepository.deleteById(id);
+		}
+		throw new RuntimeException();
+	}
+
+}

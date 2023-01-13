@@ -1,0 +1,14 @@
+1673119282560	Rename package 'com.technicalTest.springboot.app.users.usersRepository'
+1673119340978	Delete element
+1673124646534	Rename type 'UsersRepository'
+1673126436945	Rename type 'UserDto'
+1673127845708	Delete element
+1673127854679	Rename type 'UserServiceImpl'
+1673128912172	Delete element
+1673129312109	Delete element
+1673129656622	Delete element
+1673138362623	Delete element
+1673138397421	Delete element
+1673192273548	Delete element
+1673192336364	Rename package 'com.technicalTest.springboot.app.users.exception'
+1673192691184	Rename type 'AdviceController'

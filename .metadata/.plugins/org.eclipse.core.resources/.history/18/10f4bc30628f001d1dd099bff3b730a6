@@ -1,0 +1,14 @@
+package com.technicalTest.springboot.app.users.service;
+
+import java.util.List;
+
+import com.technicalTest.springboot.app.users.entity.Users;
+
+public interface UserService {
+	
+	public List<Users> getAll();
+	public Users getById(Long id);
+	public Users create(Users users);
+	public Users update(Users users, Long id);
+	public String delete(String id);
+}

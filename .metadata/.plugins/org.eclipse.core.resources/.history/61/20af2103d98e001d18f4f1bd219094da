@@ -1,0 +1,13 @@
+package com.technicalTest.springboot.app.users.service;
+
+import java.util.List;
+
+import com.technicalTest.springboot.app.users.dto.UsersDto;
+
+public interface UserService {
+	public UsersDto create(UsersDto usersDto);
+	public List<UsersDto> getAll();
+	public UsersDto getById(Long id);
+	public UsersDto update(UsersDto users, Long id);
+	public String delete(String id);
+}

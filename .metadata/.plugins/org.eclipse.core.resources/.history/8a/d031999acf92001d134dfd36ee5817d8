@@ -1,0 +1,15 @@
+package com.technicalTest.springboot.app.users.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.technicalTest.springboot.app.users.entity.Users;
+
+@Repository
+public interface UserRepository extends JpaRepository<Users, Long>{
+	//Búsquedas
+	
+	@Transactional(readOnly= true)
+	Users findByFirstName (String firstName);
+}

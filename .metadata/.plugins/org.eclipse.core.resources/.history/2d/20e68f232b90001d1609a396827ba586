@@ -1,0 +1,11 @@
+spring.application.name=service-users
+server.port=8001
+
+spring.datasource.url=jdbc:mysql://localhost:8001/appTareas?createDatabaseIfNotExist=true
+spring.datasource.username=root
+spring.datasource.password=root
+
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.jpa.database-platform=org.hibernate.dialect.MySQL57Dialect
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true

@@ -1,0 +1,5 @@
+package com.technicalTest.springboot.app.users.dto;
+
+public class ErrorDto {
+
+}
