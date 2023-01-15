@@ -84,13 +84,13 @@ public class UserController {
 	
     //RestTemplate
 	@GetMapping("/chores/{userId}")
-	public ResponseEntity<List<Chores>> getChores(@PathVariable("userId") Long userId){
-		UserDto user= userService.getUserById(userId);
+	public ResponseEntity<List<Chores>> getChores(@PathVariable("userId") Long id){
+		UserDto user= userService.getUserById(id);
 		if(user== null) {
 			throw new RuntimeException();
 		}
-		List<Chores> chores= userService.getChores(userId);
-		return ResponseEntity.status(HttpStatus.OK).body(chores);
+		List<Chores> chores= userService.getChores(id);
+		return new ResponseEntity<List<Chores>>(HttpStatus.OK);
 	}
 
 }

@@ -16,8 +16,8 @@ public interface UserService {
 	
 	//Por búsqueda
 	public UserDto findByFirstName(String firstName);
-	public UserDto findByEmail(String email);
 	//public UserDto findByCreateAt(Date createAt);
+	public UserDto findByEmail(String email);
 	
 	//RestTemplate
 	List<Chores> getChores(Long userId);

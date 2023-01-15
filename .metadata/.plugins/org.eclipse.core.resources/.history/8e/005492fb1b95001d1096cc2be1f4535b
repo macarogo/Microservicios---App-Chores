@@ -89,7 +89,7 @@ public class UserServiceImpl implements UserService{
     //RestTempale
 	@Override
 	public List<Chores> getChores(Long userId) {
-		List<Chores> chores= restTemplate.getForObject("http://localhost:8002/chores/byUser/" + userId, List.class);
+		List<Chores> chores= restTemplate.getForObject("http://localhost:8002/chores/" + userId, List.class);
 		return chores;
 	}
 

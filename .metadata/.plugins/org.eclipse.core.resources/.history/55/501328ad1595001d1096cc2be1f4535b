@@ -60,8 +60,8 @@ public class ChoresController {
 		return new ResponseEntity<Chores>(HttpStatus.ACCEPTED);
 	}
 	
-	@GetMapping("/byUser/{userId}")
-	public ResponseEntity<List<ChoresDto>> getListByUserId(@PathVariable("userId") Long userId){
+	@GetMapping("/userId/{userId}")
+	public ResponseEntity<List<ChoresDto>> getListByUserId(@PathVariable @Valid Long userId){
 		return ResponseEntity.status(HttpStatus.OK).body(choresService.getByUserId(userId));
 	}
 }

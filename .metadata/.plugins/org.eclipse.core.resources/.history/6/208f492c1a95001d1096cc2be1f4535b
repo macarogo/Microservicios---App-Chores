@@ -1,6 +1,6 @@
 package com.technicalTest.springboot.app.users.service;
 
-//import java.util.Date;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -73,12 +73,7 @@ public class UserServiceImpl implements UserService{
 		Users userFirstName= userRepository.findByFirstName(firstName);
 		return userMapper.userEntity2DTO(userFirstName);
 	}
-	
-	@Override
-	public UserDto findByEmail(String email) {
-		Users userEmail= userRepository.findByEmail(email);
-		return userMapper.userEntity2DTO(userEmail);
-	}
+
 
 	/*@Override
 	public UserDto findByCreateAt(Date createAt) {
@@ -86,10 +81,17 @@ public class UserServiceImpl implements UserService{
 		return userMapper.userEntity2DTO(userDate);
 	}*/
 
+
+	@Override
+	public UserDto findByEmail(String email) {
+		Users userEmail= userRepository.findByEmail(email);
+		return userMapper.userEntity2DTO(userEmail);
+	}
+
     //RestTempale
 	@Override
 	public List<Chores> getChores(Long userId) {
-		List<Chores> chores= restTemplate.getForObject("http://localhost:8002/chores/byUser/" + userId, List.class);
+		List<Chores> chores= restTemplate.getForObject("http://localhost:8002/chores/users/" + userId, List.class);
 		return chores;
 	}
 

@@ -80,16 +80,20 @@ public class UserServiceImpl implements UserService{
 		return userMapper.userEntity2DTO(userEmail);
 	}
 
+
 	/*@Override
 	public UserDto findByCreateAt(Date createAt) {
 		Users userDate= userRepository.findByCreateAt(createAt);
 		return userMapper.userEntity2DTO(userDate);
 	}*/
 
+
+	
+
     //RestTempale
 	@Override
 	public List<Chores> getChores(Long userId) {
-		List<Chores> chores= restTemplate.getForObject("http://localhost:8002/chores/byUser/" + userId, List.class);
+		List<Chores> chores= restTemplate.getForObject("http://localhost:8002/chores/users/" + userId, List.class);
 		return chores;
 	}
 

@@ -90,7 +90,7 @@ public class UserController {
 			throw new RuntimeException();
 		}
 		List<Chores> chores= userService.getChores(userId);
-		return ResponseEntity.status(HttpStatus.OK).body(chores);
+		return new ResponseEntity<List<Chores>>(HttpStatus.OK);
 	}
 
 }

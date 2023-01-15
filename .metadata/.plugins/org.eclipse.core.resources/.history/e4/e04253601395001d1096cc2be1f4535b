@@ -1,6 +1,6 @@
 package com.technicalTest.springboot.app.users.controller;
 
-//import java.util.Date;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +36,7 @@ public class UserController {
 	
 	@GetMapping("/listUsers")
 	public ResponseEntity<List<UserDto>> listUsers(){
-		List<UserDto> users= userService.getAllUser();
-		if(users.isEmpty()) {
-			throw new RuntimeException();
-		}
-		return ResponseEntity.status(HttpStatus.OK).body(users);
+		return ResponseEntity.status(HttpStatus.OK).body(userService.getAllUser());
 	}
 	
 	@GetMapping("/findUser/{id}")
@@ -77,20 +73,20 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.OK).body(userService.findByEmail(email));
 	}
 	
-	/*@GetMapping("/byDate/{createAt}")
+	@GetMapping("/byDate/{createAt}")
 	public ResponseEntity<UserDto> findByDate(@PathVariable("createAt") Date createAt){
 		return ResponseEntity.status(HttpStatus.OK).body(userService.findByCreateAt(createAt));
-	}*/
+	}
 	
     //RestTemplate
 	@GetMapping("/chores/{userId}")
-	public ResponseEntity<List<Chores>> getChores(@PathVariable("userId") Long userId){
-		UserDto user= userService.getUserById(userId);
+	public ResponseEntity<List<Chores>> getChores(@PathVariable("userId") Long id){
+		UserDto user= userService.getUserById(id);
 		if(user== null) {
 			throw new RuntimeException();
 		}
-		List<Chores> chores= userService.getChores(userId);
-		return ResponseEntity.status(HttpStatus.OK).body(chores);
+		List<Chores> chores= userService.getChores(id);
+		return new ResponseEntity<List<Chores>>(HttpStatus.OK);
 	}
 
 }
