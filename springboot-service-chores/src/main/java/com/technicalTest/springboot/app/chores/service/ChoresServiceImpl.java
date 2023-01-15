@@ -58,4 +58,10 @@ public class ChoresServiceImpl implements ChoresService{
 		}
 	}
 
+	@Override
+	public List<ChoresDto> getByUserId(Long userId) {
+		List<Chores> choresList= choresRepository.findByUserId(userId);
+		return choresMapper.choresEntityList2DTO(choresList);
+	}
+
 }

@@ -1,5 +1,0 @@
-package com.technicalTest.springboot.app.users.entity;
-
-public class Users {
-
-}

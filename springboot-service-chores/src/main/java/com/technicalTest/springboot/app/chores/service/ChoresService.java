@@ -11,4 +11,5 @@ public interface ChoresService {
 	public ChoresDto getById(Long id);
 	public ChoresDto updateChores(ChoresDto choresDto, Long id);
 	public void deleteChores(Long id);
+	public List<ChoresDto> getByUserId(Long userId);
 }

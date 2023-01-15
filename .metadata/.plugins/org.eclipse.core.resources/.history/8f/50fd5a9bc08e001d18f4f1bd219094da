@@ -1,5 +1,0 @@
-package com.technicalTest.springboot.app.users.repository;
-
-public class UsersRepository {
-
-}

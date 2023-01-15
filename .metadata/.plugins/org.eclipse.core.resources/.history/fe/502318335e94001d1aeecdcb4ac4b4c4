@@ -1,0 +1,102 @@
+package com.technicalTest.springboot.app.users.service;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.technicalTest.springboot.app.users.dto.UserDto;
+import com.technicalTest.springboot.app.users.entity.Users;
+import com.technicalTest.springboot.app.users.mapper.UserMapper;
+import com.technicalTest.springboot.app.users.repository.UserRepository;
+
+@Service
+public class UserServiceImpl implements UserService{
+	
+	//@Autowired
+	//private RestTemplate restTemplate;
+	
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
+	private UserMapper userMapper;
+
+
+	@Override
+	public UserDto createUser(UserDto userDto) {
+		Users users= userMapper.userDTO2Entity(userDto);
+		Users newUser= userRepository.save(users);
+		return userMapper.userEntity2DTO(newUser);
+	}
+
+
+	@Override
+	public List<UserDto> getAllUser() {
+		List<Users> usersList = userRepository.findAll();
+		List<UserDto> userDto= userMapper.userEntityList2DTO(usersList);
+		return userDto;
+	}
+
+
+	@Override
+	public UserDto getUserById(Long id) {
+		Users userId= userRepository.findById(id).orElse(null);
+		return userMapper.userEntity2DTO(userId);
+	}
+
+
+	@Override
+	public UserDto updateUser(UserDto userDto, Long id) {
+		Users user= userRepository.findById(id).orElse(null);
+		user.setFirstName(userDto.getFirstName());
+		user.setLastName(userDto.getLastName());
+		user.setEmail(userDto.getEmail());
+		Users userSave= userRepository.save(user);
+		return userMapper.userEntity2DTO(userSave);
+	}
+
+
+	@Override
+	public void deleteUser(Long id) {
+		Optional<Users> user= userRepository.findById(id);
+		if(user.isPresent()) {
+			userRepository.deleteById(id);
+		}else {
+			throw new RuntimeException();
+		}
+	}
+
+	//Por Búsqueda
+	@Override
+	public UserDto findByFirstName(String firstName) {
+		Users userFirstName= userRepository.findByFirstName(firstName);
+		return userMapper.userEntity2DTO(userFirstName);
+	}
+
+
+	@Override
+	public UserDto findByCreateAt(Date createAt) {
+		Users userDate= userRepository.findByCreateAt(createAt);
+		return userMapper.userEntity2DTO(userDate);
+	}
+
+
+	@Override
+	public UserDto findByEmail(String email) {
+		Users userEmail= userRepository.findByEmail(email);
+		return userMapper.userEntity2DTO(userEmail);
+	}
+
+    //RestTempale
+	/*@Override
+	public List<Chores> getChores(Long userId) {
+		List<Chores> chores= restTemplate.getForObject("http://localhost:8002/chores/users/" + userId, List.class);
+		return chores;
+	}*/
+
+
+}

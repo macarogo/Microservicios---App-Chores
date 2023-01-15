@@ -33,7 +33,7 @@ public class ChoresController {
 	}
 	
 	@GetMapping("/listChores")
-	public ResponseEntity<List<ChoresDto>> choresList(){
+	public ResponseEntity<List<ChoresDto>> getListChores(){
 		return ResponseEntity.status(HttpStatus.OK).body(choresService.getAllChores());
 	}
 	
@@ -58,5 +58,10 @@ public class ChoresController {
 	public ResponseEntity<Chores> deleteChores(@PathVariable Long id){
 		choresService.deleteChores(id);
 		return new ResponseEntity<Chores>(HttpStatus.ACCEPTED);
+	}
+	
+	@GetMapping("/userId/{userId}")
+	public ResponseEntity<List<ChoresDto>> getListByUserId(@PathVariable @Valid Long userId){
+		return ResponseEntity.status(HttpStatus.OK).body(choresService.getByUserId(userId));
 	}
 }

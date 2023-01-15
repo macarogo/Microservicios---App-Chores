@@ -16,6 +16,7 @@ public class ChoresMapper {
 		ChoresDto choresDto= new ChoresDto();
 		choresDto.setTitle(chores.getTitle());
 		choresDto.setContent(chores.getContent());
+		choresDto.setUserId(chores.getUserId());
 		return choresDto;
 	}
 	
@@ -32,6 +33,7 @@ public class ChoresMapper {
 		Chores chores= new Chores();
 		chores.setTitle(choresDto.getTitle());
 		chores.setContent(choresDto.getContent());
+		chores.setUserId(choresDto.getUserId());
 		return chores;
 	}
 }
