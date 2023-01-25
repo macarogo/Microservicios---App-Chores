@@ -64,4 +64,16 @@ public class ChoresServiceImpl implements ChoresService{
 		return choresMapper.choresEntityList2DTO(choresList);
 	}
 
+	//FeignClients
+	@Override
+	public Chores save(Chores chores) {
+		return choresRepository.save(chores);
+	}
+
+	@Override
+	public List<Chores> byUserId(Long userId) {
+		List<Chores> choresById= choresRepository.findByUserId(userId);
+		return choresById;
+	}
+
 }

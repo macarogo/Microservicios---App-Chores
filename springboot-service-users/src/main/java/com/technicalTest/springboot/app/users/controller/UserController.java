@@ -3,6 +3,8 @@ package com.technicalTest.springboot.app.users.controller;
 //import java.util.Date;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +22,6 @@ import com.technicalTest.springboot.app.users.entity.Users;
 import com.technicalTest.springboot.app.users.model.Chores;
 import com.technicalTest.springboot.app.users.service.UserService;
 
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/users")
@@ -91,6 +92,16 @@ public class UserController {
 		}
 		List<Chores> chores= userService.getChores(userId);
 		return ResponseEntity.status(HttpStatus.OK).body(chores);
+	}
+	
+	//FeignClient
+	@PostMapping("/saveChores/{userId}")
+	public ResponseEntity<Chores> chores(@PathVariable("userId") Long userId, @RequestBody Chores chores){
+		if(userService.getUserById(userId) == null) {
+			throw new RuntimeException();
+		}
+		Chores newChores= userService.saveChores(userId, chores);
+		return ResponseEntity.status(HttpStatus.OK).body(newChores);
 	}
 
 }

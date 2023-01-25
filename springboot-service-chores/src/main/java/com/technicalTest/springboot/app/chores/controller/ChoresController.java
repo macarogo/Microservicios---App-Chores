@@ -18,7 +18,7 @@ import com.technicalTest.springboot.app.chores.dto.ChoresDto;
 import com.technicalTest.springboot.app.chores.entity.Chores;
 import com.technicalTest.springboot.app.chores.service.ChoresService;
 
-import jakarta.validation.Valid;
+//import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/chores")
@@ -27,10 +27,10 @@ public class ChoresController {
 	@Autowired
 	private ChoresService choresService;
 	
-	@PostMapping("/createChores")
+	/*@PostMapping("/createChores")
 	public ResponseEntity<ChoresDto> saveChores(@RequestBody @Valid ChoresDto choresDto){
 		return ResponseEntity.status(HttpStatus.CREATED).body(choresService.saveChores(choresDto));
-	}
+	}*/
 	
 	@GetMapping("/listChores")
 	public ResponseEntity<List<ChoresDto>> getListChores(){
@@ -60,8 +60,19 @@ public class ChoresController {
 		return new ResponseEntity<Chores>(HttpStatus.ACCEPTED);
 	}
 	
-	@GetMapping("/byUser/{userId}")
+	/*@GetMapping("/byUser/{userId}")
 	public ResponseEntity<List<ChoresDto>> getListByUserId(@PathVariable("userId") Long userId){
 		return ResponseEntity.status(HttpStatus.OK).body(choresService.getByUserId(userId));
+	}*/
+	
+	//FeignClients
+	@PostMapping()
+	public ResponseEntity<Chores> save(@RequestBody Chores chores){
+		return ResponseEntity.status(HttpStatus.CREATED).body(choresService.save(chores));
+	}
+	
+	@GetMapping("/byUser/{userId}")
+	public ResponseEntity<List<Chores>> getListByUserId(@PathVariable("userId") Long userId){
+		return ResponseEntity.status(HttpStatus.OK).body(choresService.byUserId(userId));
 	}
 }

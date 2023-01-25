@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.technicalTest.springboot.app.users.FeignClients.ChoresFeignClient;
 import com.technicalTest.springboot.app.users.dto.UserDto;
 import com.technicalTest.springboot.app.users.entity.Users;
 import com.technicalTest.springboot.app.users.mapper.UserMapper;
@@ -22,6 +23,8 @@ public class UserServiceImpl implements UserService{
 	private UserMapper userMapper;
 	@Autowired
 	private RestTemplate restTemplate;
+	@Autowired
+	ChoresFeignClient choresFeignClient;
 
 	@Override
 	public UserDto createUser(UserDto userDto) {
@@ -93,5 +96,15 @@ public class UserServiceImpl implements UserService{
 		return chores;
 	}
 
+    //FeignClient
+	@Override
+	public Chores saveChores(Long userId, Chores chores) {
+		chores.setUserId(userId);
+		Chores newChores= choresFeignClient.save(chores);
+		return newChores;
+	}
+
+
+	
 
 }

@@ -21,4 +21,5 @@ public interface UserService {
 	
 	//RestTemplate
 	List<Chores> getChores(Long userId);
+	Chores saveChores(Long userId, Chores chores);
 }
